@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: layouts-service
+  namespace: keybard-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: layouts-service
+  template:
+    metadata:
+      labels:
+        app: layouts-service
+    spec:
+      containers:
+        - name: layouts-service
+          image: layouts-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9002
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: layouts-service
+  namespace: keybard-app
+spec:
+  selector:
+    app: layouts-service
+  ports:
+    - port: 9002
+      targetPort: 9002
+  type: ClusterIP
