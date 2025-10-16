@@ -1,7 +1,7 @@
 # Keyboard layout microservice app
 This app war created as a solution for one of tasks by study. This is a simple app, that stores information about keyboard layouts. Only registered users can add values to storage. 
 
-System build on Spring Framework, uses API Gateway, Eureka Service Discovery, one database on one service, Spring Cloud Config (local) to load settingr, FeignClient for authorisation. App ready to deploy as Kubernetes Minikube app.
+System built on [Spring Boot](https://spring.io/projects/spring-boot) framework, uses [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) as API Gateway, [Eureka Service Discovery](https://spring.io/projects/spring-cloud-netflix) for service registration, separate [PostgreSQL](https://www.postgresql.org/) databases for each service, [Spring Cloud Config](https://spring.io/projects/spring-cloud-config) for centralized configuration management, and [Feign Client](https://spring.io/projects/spring-cloud-openfeign) for service-to-service communication. App is ready to deploy as [Kubernetes](https://kubernetes.io/) [Minikube](https://minikube.sigs.k8s.io/) application.
 
 # Requirements
 - Gradle 8
