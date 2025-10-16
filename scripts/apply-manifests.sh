@@ -12,4 +12,4 @@ kubectl apply -f manifests/postgres-layouts.yaml
 kubectl apply -f manifests/layouts-service.yaml
 kubectl apply -f manifests/api-gateway.yaml
 
-kubectl get all -n task8
+kubectl get all -n keyboard-app

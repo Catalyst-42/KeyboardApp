@@ -35,7 +35,7 @@ graph LR
     %% discovery -.-> config-server
 ```
 
-# Ports of local apps in launch order
+# Ports of local apps in recommended launch order
 - config-server: 8888
 - discovery: 8761
 - auth-service: 9001
