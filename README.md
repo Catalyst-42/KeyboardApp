@@ -1,7 +1,7 @@
 # Keyboard layout microservice app
 This app war created as a solution for one of tasks by study. This is a simple app, that stores information about keyboard layouts. Only registered users can add values to storage.  
 
-System built on [Spring Boot](https://spring.io/projects/spring-boot) framework, uses [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) as API Gateway, [Eureka Service Discovery](https://spring.io/projects/spring-cloud-netflix) for service registration, separate [PostgreSQL](https://www.postgresql.org/) databases for each service, [Spring Cloud Config](https://spring.io/projects/spring-cloud-config) for centralized configuration management, and [Feign Client](https://spring.io/projects/spring-cloud-openfeign) for service-to-service communication. App is ready to deploy as [Kubernetes](https://kubernetes.io/) [Minikube](https://minikube.sigs.k8s.io/) application. Created [Postman collection](https://www.postman.com/) for testing.  
+System built on [Spring Boot](https://spring.io/projects/spring-boot) framework, uses [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) as API Gateway, [Eureka Service Discovery](https://spring.io/projects/spring-cloud-netflix) for service registration, separate [PostgreSQL](https://www.postgresql.org/) databases for each service, [Spring Cloud Config](https://spring.io/projects/spring-cloud-config) for centralized configuration management, and [Feign Client](https://spring.io/projects/spring-cloud-openfeign) for service-to-service communication. Authorization is implemented using [JWT](https://jwt.io) tokens. App is ready to deploy as [Kubernetes](https://kubernetes.io/) [Minikube](https://minikube.sigs.k8s.io/) application. Created [Postman collection](https://www.postman.com/) for testing.  
 
 # Requirements
 - Gradle 8
@@ -66,7 +66,7 @@ How to test this repo: just load the collection to Postman and test it there. He
 └─ GET /LAYOUTS-SERVICE/layouts
 ```
 
-# How to run in Mikikiube
+# How to run in Minikube
 Execute all scripts from `scripts` folder. But ensure, that new pods, created via manifest applying is creating only when all other pods already running and ok. This is important because all pods depends on each other.  
 
 ```zsh
