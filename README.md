@@ -1,0 +1,54 @@
+# Keyboard layout microservice app
+This app war created as a solution for one of tasks by study. This is a simple app, that stores information about keyboard layouts. Only registered users can add values to storage. 
+
+System build on Spring Framework, uses API Gateway, Eureka Service Discovery, one database on one service, Spring Cloud Config (local) to load settingr, FeignClient for authorisation. App ready to deploy as Kubernetes Minikube app.
+
+# Requirements
+- Gradle 8
+- Java 21
+- PostgreSQL
+
+```mermaid
+graph LR
+    config-server[Config Server]
+    api-gateway[API Gateway]
+    discovery[Discovery]
+    auth-service[Auth Service]
+    layouts-service[Layouts Service]
+    postgres-auth[(Postgres Auth)]
+    postgres-layouts[(Postgres Layouts)]
+
+    %% Service Discovery
+    api-gateway --> discovery
+    discovery --> auth-service
+    discovery --> layouts-service
+
+    %% Database
+    auth-service --> postgres-auth
+    layouts-service --> postgres-layouts
+
+    %% api-gateway -.-> config-server
+    %% auth-service -.-> config-server
+    %% layouts-service -.-> config-server
+    %% discovery -.-> config-server
+```
+
+# Ports of local apps in launch order
+- config-server: 8888
+- discovery: 8761
+- auth-service: 9001
+- layout-service: 9002
+- api-gateway: 8080
+
+How to test this repo: just load the collection to Postman and test it there.
+
+# How to run in Mikikiube
+Execute all scripts from `scripts` folder. But ensure, that new pods, created via manifest applying is creating only when all other pods already running and ok. This is important because all pods depends on each other.
+
+```zsh
+# Script execute order
+./scripts/build-jar.sh
+./scripts/build-containers.sh
+./scripts/apply-manifests.sh  # Please, do it manually for manifests
+./scripts/port-forward.sh
+```

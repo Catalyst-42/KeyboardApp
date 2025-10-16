@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "74c18a6d-42dd-43a0-980e-800d73e4fa90",
+		"name": "Keyboard app",
+		"description": "Collection to help me to manage to test this app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38177568"
+	},
+	"item": [
+		{
+			"name": "Config Server",
+			"item": [
+				{
+					"name": "Config For Discovery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/discovery/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"discovery",
+								"default"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Direct Ports",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"jwtCatalyst\", jsonData.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Catalyst\",\n    \"password\": \"thisJavaIsKillingMe\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9001/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Whoami",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtCatalyst}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9001/api/auth/whoami",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"api",
+								"auth",
+								"whoami"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Layout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtCatalyst}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AnkiValinor\",\n    \"mapping\": \"assldkjfnwqetphxzvcbl\",\n    \"creator\": \"Catalyst\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9002/layouts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"layouts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Layouts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9002/layouts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"layouts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"jwtCatalyst\", jsonData.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Catalyst\",\n    \"password\": \"thisJavaIsKillingMe\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AUTH-SERVICE/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AUTH-SERVICE",
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Whoami",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtCatalyst}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/AUTH-SERVICE/api/auth/whoami",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AUTH-SERVICE",
+								"api",
+								"auth",
+								"whoami"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Layout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtCatalyst}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"The whole new API keyboard\",\n    \"mapping\": \"apiapiapiapiapiapiapiapiapia\",\n    \"creator\": \"Catalyst\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/LAYOUTS-SERVICE/layouts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"LAYOUTS-SERVICE",
+								"layouts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Layouts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/LAYOUTS-SERVICE/layouts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"LAYOUTS-SERVICE",
+								"layouts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwtCatalyst",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.1'
+}
+
+group = 'ru.task8'
+version = '0.1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.cloud:spring-cloud-dependencies:2022.0.4")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+}
+
+tasks.named('bootJar') {
+    archiveFileName.set('app.jar')
+}
